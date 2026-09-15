@@ -235,43 +235,184 @@ def build_digest(items):
     for item in ordered:
         sections[item["category"]].append(item)
 
-    html = """
-    <html>
-    <body style="font-family:Arial;">
-    <h1>Weekly Land Intelligence Digest</h1>
+    total_items = len(items)
 
-    <p>
-    Automatically generated strategic intelligence
-    for Bell Homes.
-    </p>
+    html = f"""
+    <html>
+    <body style="
+        margin:0;
+        padding:0;
+        background:#eef5fb;
+        font-family:'Segoe UI', Arial, sans-serif;
+        color:#2c3e50;
+    ">
+
+    <div style="
+        max-width:900px;
+        margin:30px auto;
+        background:#ffffff;
+        border-radius:16px;
+        overflow:hidden;
+        box-shadow:0 8px 30px rgba(0,0,0,0.08);
+    ">
+
+        <div style="
+            background:linear-gradient(
+                135deg,
+                #6ea8dc,
+                #a1345e
+            );
+            padding:35px;
+            color:white;
+        ">
+
+            <h1 style="
+                margin:0;
+                font-size:34px;
+            ">
+                Bell Homes
+            </h1>
+
+            <p style="
+                margin-top:10px;
+                font-size:18px;
+            ">
+                Weekly Land Intelligence Digest
+            </p>
+
+            <p style="
+                margin-top:15px;
+                opacity:0.95;
+                font-size:14px;
+            ">
+                Planning • Economics • Development Land • Competitors
+            </p>
+
+        </div>
+
+        <div style="padding:35px;">
+
+            <div style="
+                background:#f3f8fc;
+                border-left:5px solid #6ea8dc;
+                padding:18px;
+                border-radius:8px;
+                margin-bottom:30px;
+            ">
+
+                <strong>Week at a Glance</strong>
+
+                <p style="
+                    margin-top:10px;
+                    margin-bottom:0;
+                    color:#556575;
+                ">
+                    {total_items} intelligence items were
+                    captured during the last reporting period.
+                    Articles have been prioritised based on
+                    regional relevance, planning significance
+                    and competitor activity.
+                </p>
+
+            </div>
     """
 
     for category, entries in sections.items():
 
-        html += f"<h2>{category}</h2>"
+        colour = "#6ea8dc"
+
+        if category == "Competitor Activity":
+            colour = "#a1345e"
+
+        html += f"""
+        <h2 style="
+            color:{colour};
+            border-bottom:2px solid #e2e8f0;
+            padding-bottom:8px;
+            margin-top:40px;
+        ">
+            {category}
+        </h2>
+        """
 
         if not entries:
-            html += "<p>No notable items.</p>"
-            continue
 
-        html += "<ul>"
+            html += """
+            <p style="
+                color:#94a3b8;
+            ">
+                No notable updates identified.
+            </p>
+            """
+            continue
 
         for item in entries:
 
+            summary = simplify_summary(
+                item.get("summary", "")
+            )
+
             html += f"""
-            <li>
-                <strong>{item['title']}</strong>
-                <br>
-                {item['summary']}
-                <br>
-                {item['url']}View Source</a>
-            </li>
-            <br>
+            <div style="
+                background:#fafafa;
+                border:1px solid #e5e7eb;
+                border-left:5px solid {colour};
+                border-radius:10px;
+                padding:18px;
+                margin-bottom:16px;
+            ">
+
+                <div style="
+                    font-size:18px;
+                    font-weight:600;
+                    color:#1e293b;
+                    margin-bottom:8px;
+                ">
+                    {item['title']}
+                </div>
+
+                <div style="
+                    font-size:13px;
+                    color:#7c8a9b;
+                    margin-bottom:12px;
+                ">
+                    Source: {item['source']}
+                </div>
+
+                <div style="
+                    line-height:1.65;
+                    color:#475569;
+                    margin-bottom:14px;
+                ">
+                    {summary}
+                </div>
+
+                <a
+                    href="{item['url']}"
+e →
+                </a>
+
+            </div>
             """
 
-        html += "</ul>"
+    html += f"""
+            <div style="
+                margin-top:40px;
+                padding-top:20px;
+                border-top:1px solid #e2e8f0;
+                color:#94a3b8;
+                font-size:12px;
+            ">
 
-    html += """
+                Generated automatically on
+                {datetime.now(timezone.utc).strftime('%d %B %Y at %H:%M UTC')}
+
+            </div>
+
+        </div>
+
+    </div>
+
     </body>
     </html>
     """
