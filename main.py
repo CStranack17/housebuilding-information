@@ -275,7 +275,7 @@ def simplify_summary(text, max_length=220):
 
 def build_digest(items):
 
-  sections = {
+    sections = {
 
     "🏛 Local Planning Updates": [],
     "📜 Planning & Housing Policy": [],
@@ -284,7 +284,7 @@ def build_digest(items):
     "📰 Industry & Development News": []
     }
 
-        seen_titles = set()
+    seen_titles = set()
 
         unique_items = []
 
