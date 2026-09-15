@@ -322,8 +322,15 @@ save_json(BUFFER_FILE, buffer_data)
 
 today = datetime.now(timezone.utc)
 
+# Allow manual testing
+force_email = (
+    os.getenv("FORCE_EMAIL", "false")
+    .lower()
+    == "true"
+)
+
 # Monday = 0
-if today.weekday() == 0 and len(buffer_data) > 0:
+if (today.weekday() == 0 or force_email) and len(buffer_data) > 0:
 
     digest_html = build_digest(buffer_data)
 
@@ -334,10 +341,10 @@ if today.weekday() == 0 and len(buffer_data) > 0:
     ) as f:
         f.write(digest_html)
 
+    print("Sending weekly digest email...")
+
     send_digest(digest_html)
 
-    save_json(BUFFER_FILE, [])
+    print("Email sent successfully.")
 
-print(
-    f"New records added: {len(new_findings)}"
-)
+    save_json(BUFFER_FILE, [])
