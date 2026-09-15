@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "b01d2e24e19e7c21d8a32904b44b178d256cda071d6c043e2840eb55e9a986f2",
+    "source": "Bank of England",
+    "title": "Artificial Intelligence Consortium minutes \u2013 June 2026",
+    "summary": "The Artificial Intelligence Consortium (AIC) aims to provide a platform for public-private engagement to further dialogue on the capabilities, development, deployment, use, and potential risks of artificial intelligence (AI) in UK financial services.",
+    "url": "https://www.bankofengland.co.uk/minutes/2026/june/ai-consortium-minutes-3-june-2026",
+    "category": "Industry News",
+    "score": 0,
+    "date_found": "2026-09-15T14:23:13.116202+00:00"
+  },
+  {
+    "id": "bc5740149aeb3c6fbaa45a4516087b3bad50d6b22992612f581a5dfa108e984e",
+    "source": "Bank of England",
+    "title": "Asset Purchase Facility: Gilt Sales \u2013 Market Notice 19 June 2026",
+    "summary": "This Market Notice sets out the schedule for sales in Q3 2026 of gilts held in the Asset Purchase Facility (APF) for monetary policy purposes.",
+    "url": "https://www.bankofengland.co.uk/markets/market-notices/2026/june/apf-gilt-sales-market-notice-19-june-2026",
+    "category": "Planning & Policy",
+    "score": 2,
+    "date_found": "2026-09-15T14:23:13.116391+00:00"
+  }
+]
