@@ -256,6 +256,34 @@ def collect_rss():
 
     return findings
 
+def simplify_summary(text, max_length=180):
+
+    if not text:
+        return ""
+
+    text = (
+        text.replace("\n", " ")
+        .replace("\r", " ")
+        .replace("<p>", "")
+        .replace("</p>", "")
+        .strip()
+    )
+
+    while "  " in text:
+        text = text.replace("  ", " ")
+
+    if len(text) <= max_length:
+        return text
+
+    shortened = text[:max_length]
+
+    last_space = shortened.rfind(" ")
+
+    if last_space > 0:
+        shortened = shortened[:last_space]
+
+    return shortened + "..."
+
 
 # =====================================================
 # DIGEST CREATION
