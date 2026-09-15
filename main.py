@@ -215,12 +215,6 @@ def collect_rss():
                     .replace("<p>", "")
                     .replace("</p>", "")
                 )
-                
-                if not is_housebuilding_relevant(
-                    title,
-                    summary
-                ):
-                    continue
 
                 item = {
 
@@ -288,114 +282,111 @@ def build_digest(items):
     "📈 Housing Market & Economics": [],
     "🏗 Housebuilders & Competitors": [],
     "📰 Industry & Development News": []
-}
+    }
 
-seen_titles = set()
+        seen_titles = set()
 
-unique_items = []
+        unique_items = []
 
-for item in items:
+    for item in items:
 
-    title_key = item["title"].strip().lower()
+        title_key = item["title"].strip().lower()
 
     if title_key in seen_titles:
         continue
 
-    seen_titles.add(title_key)
+        seen_titles.add(title_key)
 
-    unique_items.append(item)
+        unique_items.append(item)
 
-ordered = sorted(
-    unique_items,
-    key=lambda x: x["score"],
-    reverse=True
-)
+        ordered = sorted(
+        unique_items,
+        key=lambda x: x["score"],
+        reverse=True
+        )
 
-ordered = ordered[:MAX_EMAIL_ARTICLES]
+        ordered = ordered[:MAX_EMAIL_ARTICLES]
 
-for item in ordered:
+    for item in ordered:
     sections[item["category"]].append(item)
 
-html = f"""
-<html>
+    html += f"""
+    <div style="
+        background:{LIGHT_BLUE};
+        padding:18px;
+        border-left:6px solid {MAROON};
+        border-radius:8px;
+        margin-bottom:25px;
+    ">
+    <b>Weekly Intelligence Summary</b>
 
-<body style="
-    background:{BACKGROUND};
-    font-family:'Segoe UI',Arial,sans-serif;
-    margin:0;
-    padding:25px;
-">
+    <br><br>
 
-<div style="
-    max-width:950px;
-    margin:auto;
-    background:white;
-    border-radius:14px;
-    overflow:hidden;
-">
+    {len(ordered)} prioritised intelligence items included.
 
-<div style="
-    background:{MAROON};
-    padding:35px;
-    color:white;
-">
+    </div>
+    """
 
-<h1 style="margin:0;">
-Bell Homes
-</h1>
+for category, entries in sections.items():
 
-<p style="
-    margin-top:10px;
-    font-size:18px;
-">
-Weekly Land Intelligence Digest
-</p>
+    if not entries:
+        continue
 
-<p style="
-    margin-top:12px;
-    font-size:13px;
-    opacity:0.85;
-">
-Planning • Policy • Economics • Competitors • Development
-</p>
+    html += f"""
+    <h2 style="
+        color:{MAROON};
+        margin-top:35px;
+        border-bottom:2px solid {LIGHT_BLUE};
+        padding-bottom:8px;
+    ">
+        {category}
+    </h2>
+    """
 
-</div>
+    for item in entries:
 
-<div style="padding:30px;">
-"""
+        summary = simplify_summary(
+            item.get("summary", "")
+        )
 
-html += f"""
+        html += f"""
+        <div style="
+            background:white;
+            border:1px solid #dce3ea;
+            border-left:5px solid {MAROON};
+            border-radius:10px;
+            padding:18px;
+            margin-bottom:16px;
+        ">
 
-<div style="
-    background:{LIGHT_BLUE};
-    padding:18px;
-    border-left:6px solid {MAROON};
-    border-radius:8px;
-    margin-bottom:25px;
-">
+            <div style="
+                font-size:18px;
+                font-weight:600;
+                color:{NAVY};
+                margin-bottom:8px;
+            ">
+                {item['title']}
+            </div>
 
-<b>Weekly Intelligence Summary</b>
+            <div style="
+                color:#64748b;
+                font-size:13px;
+                margin-bottom:12px;
+            ">
+                Source: {item['source']}
+            </div>
 
-<br><br>
+            <div style="
+                color:#334155;
+                line-height:1.6;
+                margin-bottom:14px;
+            ">
+                {summary}
+            </div>
 
-{len(ordered)} prioritised intelligence items included.
+            {item['url']}
+                Read Full Article →
+            </a>
 
-</div>
-"""
-
-<div style="
-    background:white;
-    border:1px solid #dce3ea;
-    border-left:5px solid {MAROON};
-    border-radius:10px;
-    padding:18px;
-    margin-bottom:16px;
-">
-
-<a
-href="{item['url']}"
-style="
-color:{MAROON};
-text-decoration:none;
-font-weight:600;
-font-size:13px;
+        </div>
+        """
