@@ -193,7 +193,7 @@ def is_housebuilding_relevant(title, summary):
         if keyword in text:
             matches += 1
 
-    return matches >= 2
+    return matches >= 1
 
 
 # =====================================================
