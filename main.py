@@ -225,6 +225,12 @@ def collect_rss():
                     .replace("<p>", "")
                     .replace("</p>", "")
                 )
+                
+                if not is_housebuilding_relevant(
+                    title,
+                    summary
+                ):
+                    continue
 
                 item = {
 
