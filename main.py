@@ -85,6 +85,31 @@ ECONOMIC_KEYWORDS = [
     "development finance"
 ]
 
+HOUSEBUILDING_KEYWORDS = [
+    "housing",
+    "residential",
+    "homes",
+    "housebuilder",
+    "development",
+    "planning permission",
+    "outline consent",
+    "reserved matters",
+    "site allocation",
+    "housing allocation",
+    "development land",
+    "strategic land",
+    "call for sites",
+    "brownfield",
+    "greenfield",
+    "planning application",
+    "local plan",
+    "nutrient neutrality",
+    "biodiversity net gain",
+    "section 106",
+    "cil",
+    "development finance"
+]
+
 # =====================================================
 # FILE UTILITIES
 # =====================================================
@@ -156,6 +181,19 @@ def score_item(title, summary):
             score += 2
 
     return score
+
+def is_housebuilding_relevant(title, summary):
+
+    text = f"{title} {summary}".lower()
+
+    matches = 0
+
+    for keyword in HOUSEBUILDING_KEYWORDS:
+
+        if keyword in text:
+            matches += 1
+
+    return matches >= 2
 
 
 # =====================================================
