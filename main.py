@@ -347,50 +347,55 @@ def main():
     new_items = collect_rss()
     print(f"Found {len(new_items)} new items.")
 
+    # Append new items to buffer
     buffer_data.extend(new_items)
     save_json(BUFFER_FILE, buffer_data)
 
+    # Save updated history log
     history.extend([item["id"] for item in new_items])
     save_json(HISTORY_FILE, history)
 
-    # --- FORCE TEST EMAIL BLOCK ---
-    api_key = os.environ.get("RESEND_API_KEY")
-    to_email = os.environ.get("TO_EMAIL")
+    # Check if today is Monday (0 = Monday in Python datetime)
+    is_monday = datetime.now(timezone.utc).weekday() == 0
 
-    print(f"API Key present: {bool(api_key)}")
-    print(f"Target Email: {to_email}")
+    if is_monday:
+        if not buffer_data:
+            print("Today is Monday, but no articles accumulated in the buffer this week. Skipping email.")
+            return
 
-    if not api_key or not to_email:
-        print("ERROR: Missing RESEND_API_KEY or TO_EMAIL environment variables.")
-        return
+        print(f"Monday dispatch triggered. Generating digest from {len(buffer_data)} accumulated items...")
+        html_content = build_digest(buffer_data)
 
-    # Use buffer data, or dummy item if buffer is empty
-    test_items = buffer_data if buffer_data else [{
-        "id": "test",
-        "source": "Test Source",
-        "title": "Test Email Execution",
-        "summary": "This is a test run to confirm Resend delivery.",
-        "url": "https://github.com",
-        "category": "📰 Industry & Development News",
-        "score": 10
-    }]
+        # Save HTML locally for repository records
+        with open(DIGEST_FILE, "w", encoding="utf-8") as f:
+            f.write(html_content)
 
-    print("Generating digest HTML...")
-    html_content = build_digest(test_items)
+        api_key = os.environ.get("RESEND_API_KEY")
+        to_email = os.environ.get("TO_EMAIL")
 
-    resend.api_key = api_key
-    print(f"Attempting Resend dispatch to {to_email}...")
-    
-    try:
-        response = resend.Emails.send({
-            "from": "onboarding@resend.dev",
-            "to": to_email,
-            "subject": f"Test Intelligence Digest - {datetime.now().strftime('%d %b %Y')}",
-            "html": html_content
-        })
-        print(f"Resend Response: {response}")
-    except Exception as e:
-        print(f"FAILED TO SEND EMAIL: {e}")
+        if api_key and to_email:
+            resend.api_key = api_key
+            print(f"Sending weekly email digest via Resend to {to_email}...")
+            
+            try:
+                resend.Emails.send({
+                    "from": "onboarding@resend.dev",
+                    "to": to_email,
+                    "subject": f"Bell Homes Land Intelligence - Weekly Digest ({datetime.now().strftime('%d %b %Y')})",
+                    "html": html_content
+                })
+                print("Weekly email sent successfully!")
+
+                # Clear the buffer file so next week starts fresh
+                save_json(BUFFER_FILE, [])
+                print("Weekly buffer cleared.")
+
+            except Exception as e:
+                print(f"Error sending email via Resend: {e}")
+        else:
+            print("Missing RESEND_API_KEY or TO_EMAIL environment variables. Email omitted.")
+    else:
+        print("Daily scan complete. Intelligence appended to weekly buffer (Dispatches on Mondays).")
 
 if __name__ == "__main__":
     main()
