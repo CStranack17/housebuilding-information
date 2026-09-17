@@ -978,5 +978,55 @@
     "category": "\ud83d\udcf0 Industry & Development News",
     "score": 1,
     "date_found": "2026-09-16T07:15:00.840764+00:00"
+  },
+  {
+    "id": "c74aa5c62446b0281368e3ffe4b114d1f68cebbd97fbdf5fa964c415ed1aef21",
+    "source": "Bank of England",
+    "title": "Exchange of letters between the Governor and the Chancellor regarding CPI Inflation - September 2026",
+    "summary": "Exchange of letters between the Governor and the Chancellor",
+    "url": "https://www.bankofengland.co.uk/letter/2026/cpi-inflation-september-2026",
+    "category": "\ud83d\udcc8 Housing Market & Economics",
+    "score": 3,
+    "date_found": "2026-09-17T12:18:29.644698+00:00"
+  },
+  {
+    "id": "6ca892641b9c33cda69d8dd5639c70c772ea2ed6b1bc6c44ae928db79db9a5b8",
+    "source": "Bank of England",
+    "title": "Exchange of letters between the Governor and the Chancellor regarding QT and the APF - September 2026",
+    "summary": "Exchange of letters between the Governor and the Chancellor",
+    "url": "https://www.bankofengland.co.uk/letter/2026/exchange-of-letters-between-the-governor-and-the-chancellor-regarding-qt-and-the-apf",
+    "category": "\ud83d\udcf0 Industry & Development News",
+    "score": 1,
+    "date_found": "2026-09-17T12:18:29.644732+00:00"
+  },
+  {
+    "id": "b389e2459b4528389eb404c23c8af0b0a2877933ce04214bede9733d8151d3f0",
+    "source": "Bank of England",
+    "title": "Asset Purchase Facility: Gilt Sales \u2013 Market Notice 17 September 2026",
+    "summary": "This Market Notice outlines the Bank Executive\u2019s approach to implementing the Monetary Policy Committee\u2019s (MPC) decision to unwind the gilts held for monetary policy purposes in the Asset Purchase Facility (APF). As part of this, Bank APF auctions will be paused while the Bank reviews a model of selling gilts to the Government.",
+    "url": "https://www.bankofengland.co.uk/markets/market-notices/2026/asset-purchase-facility-gilt-sales-market-notice-17-september-2026",
+    "category": "\ud83d\udcdc Planning & Housing Policy",
+    "score": 4,
+    "date_found": "2026-09-17T12:18:29.644770+00:00"
+  },
+  {
+    "id": "8c691a0ac9bf0ee09557be7822cf8f6f5620e4368525a2828957ad0c57b04bd4",
+    "source": "Bank of England",
+    "title": "Bank rate maintained at 3.75% - September 2026 Monetary Policy Summary and Minutes",
+    "summary": "The Bank of England\u2019s Monetary Policy Committee is responsible for making decisions about Bank Rate.",
+    "url": "https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/september-2026",
+    "category": "\ud83d\udcf0 Industry & Development News",
+    "score": 1,
+    "date_found": "2026-09-17T12:18:29.644799+00:00"
+  },
+  {
+    "id": "5024fef0f5c57d839ae190a71c98b51cd8e390052e8429948fa8679cc94f642a",
+    "source": "Bank of England",
+    "title": "Chancellor announces Bank of England appointments",
+    "summary": "His Majesty the King and the Chancellor have appointed three new non-executive directors to the Bank of England\u2019s Court of Directors",
+    "url": "https://www.bankofengland.co.uk/news/2026/september/chancellor-announces-boe-appointments",
+    "category": "\ud83d\udcf0 Industry & Development News",
+    "score": 1,
+    "date_found": "2026-09-17T12:18:29.644824+00:00"
   }
 ]
