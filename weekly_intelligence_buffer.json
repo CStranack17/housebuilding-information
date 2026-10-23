@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "5fad9eed43dc52478ae8cff3eb5e2c591f2db9638cf1b528950f5c64738add6b",
+    "source": "Bank of England",
+    "title": "Regulators unveil plans to simplify Senior Manager and Certification Regime",
+    "summary": "The number of financial services roles required to face enhanced checks from regulators will fall significantly under proposals that will support growth.",
+    "url": "https://www.bankofengland.co.uk/news/2026/october/regulators-unveil-plans-to-simplify-senior-manager-and-certification-regime",
+    "category": "\ud83d\udcf0 Industry & Development News",
+    "score": 1,
+    "date_found": "2026-10-23T12:16:46.557462+00:00"
+  },
+  {
+    "id": "8fdb1aefa28bccff4d165f9997bb9659009b68f505cf69c2eb10c08d10aae913",
+    "source": "Bank of England",
+    "title": "Minutes of the Securities Lending Committee meeting \u2013 September 2026",
+    "summary": "The Securities Lending Committee is a forum for market participants and authorities to discuss the UK securities lending market.",
+    "url": "https://www.bankofengland.co.uk/minutes/2026/september/securities-lending-committee-meeting-september-2026",
+    "category": "\ud83d\udcf0 Industry & Development News",
+    "score": 1,
+    "date_found": "2026-10-23T12:16:46.557509+00:00"
+  }
+]
